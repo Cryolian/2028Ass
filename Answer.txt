@@ -1,0 +1,5 @@
+When push and pop are commented, the program goes from asm_func to subroutine, before branching back to asm_func and halting.
+
+When not commented, the program flow is correct because the values of the link register are preserved.
+
+When the program first branches into asm_func from main(), the link register was updated to whatever instruction it was supposed to execute next in main(). Inside asm_func, without the push and pop, branching would update the link register with the instruction after it branched, causing the initial instruction in main() to be lost. Push and pop thus allows for multiple layers of functions and branching.

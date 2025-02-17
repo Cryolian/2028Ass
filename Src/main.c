@@ -30,10 +30,34 @@ int main(void)
 {
 	initialise_monitor_handles();
 	int i,j;
-	int building[F][S] = {{8,8},{8,8},{8,8}};
-	int entry[5] = {1,2,3,4,5};
-	int exit[F][S] = {{1,2},{2,3},{3,4}};
+
+	// Test case 1 (11, 10, 10, 8. 5, 4)
+//	int building[F][S] = {{8,8},{8,8},{8,8}};
+//	int entry[5] = {1,2,3,4,5};
+//	int exit[F][S] = {{1,2},{2,3},{3,4}};
+
+	// Test case 2 (5, 2, 3, 4, 5, 6)
+//	int building[F][S] = {{1,2},{3,4},{5,6}};
+//	int entry[5] = {1,1,1,1,1};
+//	int exit[F][S] = {{1,0},{0,0},{0,0}};
+
+	// Test case 3 (11, 10, 9, 8, 0, 1)
+//	int building[F][S] = {{12,12},{10,5},{3,7}};
+//	int entry[5] = {1,1,1,1,5};
+//	int exit[F][S] = {{1,2},{3,4},{3,6}};
+
+	// Test case 4 (10, 10, 9, 9, 8, 8)
+//	int building[F][S] = {{12,12},{12,12},{12,12}};
+//	int entry[5] = {0,0,0,0,0};
+//	int exit[F][S] = {{2,2},{3,3},{4,4}};
+
+	// Test case 5 (11, 11, 11, 11, 11, 11)
+	int building[F][S] = {{9,10},{7,8},{4,4}};
+	int entry[5] = {2,4,6,8,10};
+	int exit[F][S] = {{1,1},{1,1},{1,1}};
+
 	int result[F][S] = {{F,S},{0,0},{0,0}};
+
 
 	asm_func((int*)building, (int*)entry, (int*)exit, (int*)result);
 
