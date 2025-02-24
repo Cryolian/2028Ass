@@ -45,7 +45,7 @@ asm_func:
 
 add_to_total:
 
-	LDR R6, [R1], $4
+	LDR R6, [R1], #4
 	ADD R4, R6				// Add entries to r4
 	ADD R5, #1				// Increment counter by 1
 	CMP R5, #5				// Check number of loops
