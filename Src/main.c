@@ -52,9 +52,14 @@ int main(void)
 //	int exit[F][S] = {{2,2},{3,3},{4,4}};
 
 	// Test case 5 (11, 11, 11, 11, 11, 11)
-	int building[F][S] = {{9,10},{7,8},{4,4}};
+//	int building[F][S] = {{9,10},{7,8},{4,4}};
+//	int entry[5] = {2,4,6,8,10};
+//	int exit[F][S] = {{1,1},{1,1},{1,1}};
+
+	// Self test case for overflow (11, 12, 11, 12, 10, 10)
+	int building[F][S] = {{12,12},{12,12},{12,12}};
 	int entry[5] = {2,4,6,8,10};
-	int exit[F][S] = {{1,1},{1,1},{1,1}};
+	int exit[F][S] = {{1,0},{1,0},{2,2}};
 
 	int result[F][S] = {{F,S},{0,0},{0,0}};
 
