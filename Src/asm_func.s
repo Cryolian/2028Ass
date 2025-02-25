@@ -29,15 +29,23 @@
 @ R4 Cars left to enter
 @ R5 Loop Counter
 @ R6 Store cars in section, or cars to add to section
-@ R7 Store constant 12
+@ R7 Store constants
 @ R8 Store cars to exit from section
+@ R9 Store constants
 @ ...
 
 @ write your program from here:
 
+.equ FLOORS		, 3
+.equ SECTIONS	, 2
+.equ ENTRIES	, 5
+.equ MAX_CARS	, 12
+
 asm_func:
 
 	PUSH {R4-R11,R14}
+
+	LDR R9, =ENTRIES
 
 	// set register to 0
 	EOR R5, R5
@@ -48,10 +56,15 @@ add_to_total:
 	LDR R6, [R1], #4
 	ADD R4, R6				// Add entries to r4
 	ADD R5, #1				// Increment counter by 1
-	CMP R5, #5				// Check number of loops
+	CMP R5, R9				// Check number of loops
 	BNE add_to_total		// Branch back if not 5
 
 move_cars_in:
+
+	// Load sections constant to R9
+	LDR R9, =FLOORS
+	LDR R5, =SECTIONS
+	MUL R9, R5
 
 	EOR R5, R5
 
@@ -65,18 +78,18 @@ check_cars_to_add:
 
 	ADD R6, R4	 			// Add up entry + current section
 
-	MOV R7, #12
-	CMP R6, #12				// Check if result > 12\
+	LDR R7, =MAX_CARS
+	CMP R6, R7				// Check if result > 12\
 
 	// Greater than 12
 	ITTTT GT
-	SUBGT R4, R6, #12		// Store excess in R4
+	SUBGT R4, R6, R7		// Store excess in R4
 	SUBGT R7, R8			// Get number at the end of day
 	STRGT R7, [R3], #4		// Store result
 	BGT check_loop
 
 	// Not greater than 12
-	MOV R4, #0				// Set cars left to enter to 0
+	EOR R4, R4				// Set cars left to enter to 0
 	SUB R6, R8				// Get number at the end of day
 	STR R6, [R3], #4		// Store result
 	B check_loop
@@ -90,7 +103,7 @@ else_compute_exit:
 check_loop:
 
 	ADD R5, #1
-	CMP R5, #6
+	CMP R5, R9
 	BNE check_cars_to_add
 
 	POP	{R4-R11,R14}
