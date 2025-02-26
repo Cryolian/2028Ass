@@ -36,8 +36,6 @@
 
 @ write your program from here:
 
-.equ FLOORS		, 3
-.equ SECTIONS	, 2
 .equ ENTRIES	, 5
 .equ MAX_CARS	, 12
 
@@ -62,8 +60,8 @@ add_to_total:
 move_cars_in:
 
 	// Load sections constant to R9
-	LDR R9, =FLOORS
-	LDR R5, =SECTIONS
+	LDR R9, [R3]
+	LDR R5, [R3, #4]
 	MUL R9, R5
 
 	EOR R5, R5
